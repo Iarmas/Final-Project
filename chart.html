@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chart.js Example</title>
+    <!-- import plugin script -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">]
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    
+    <!-- bar chart canvas element -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Charts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">More</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <h1 class="text-justify">Tweets per line, per 24hrs in CDMX</h1>
+    <canvas id="myChart" width="600" height="400" class="col-6"></canvas>
+
+    <div class="card">
+      <div class="card-header">
+        Most Popular Tweets
+      </div>
+      <div class="card-body container">
+        <h5 class="card-title">Tweet 1</h5>
+        <p id="caption">El @MetroCDMX lleno de vendedores... En la estaci√≥n Cuatro Caminos hay tres o cuatro por vag√≥n... nadie intenta siquiera detenerlos, me refiero a la autoridad</p>
+      </div>
+      <div class="card-body container">
+        <h5 class="card-title">Tweet 2</h5>
+        <p id="caption">Q paso @MetroCDMX en barranca ninguna de tus escaleras sirve y personas de la tercera edad apenas si pueden subir @MetroCDMX as algo no chinguen!!!! https://t.co/BLxTQ4irVw</p>
+      </div>
+      <div class="card-body container">
+        <h5 class="card-title">Tweet 3</h5>
+        <p id="caption">üî¥ #EnDirecto Si est√°s por abordar la estaci√≥n Tacuba de la #L√≠nea7 del @MetroCDMX te encontrar√°s el buen ambiente y ska de la @LATREMENDAKORTE</p>
+      </div>
+      <div class="card-body container">
+        <h5 class="card-title">Tweet 4</h5>
+        <p id="caption">Mi estimado @MetroCDMX que sucede en L8 direcci√≥n Garibaldi que va muy lenta??</p>
+      </div>
+      <div class="card-body container">
+        <h5 class="card-title">Tweet 5</h5>
+        <p id="caption">Aunque suene parad√≥jico, hay un lugar subterr√°neo donde se ven las constelaciones üå† del zodiaco. üò≥ ¬°As√≠ como lo lees üßê! Se trata del T√∫nel de la Ciencia üî≠ del @MetroCDMX üöá, ubicado en el pasillo que une las l√≠neas 3 y 5 de la #Estaci√≥nLaRaza. Conoce m√°s en este hilo üßµ.üëáüèΩ https://t.co/5HGTNbiD18</p>
+      </div>
+    </div>
+    
+
+    <script>
+      // Global parameters:
+      // do not resize the chart canvas when its container does (keep at 600x400px)
+      Chart.defaults.global.responsive = false;
+
+      // define the chart data
+      var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels : ["L1","L2","L3","L4","L5","L6","L7","L8","L9","LA","LB","L12"],
+        datasets: [{
+            label: '# Of Tweets',
+            data : [32,57,131,25,20,6,22,32,26,3,0,38],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(49, 191, 0, 0.2)',
+                'rgba(80, 36, 198, 0.2)',
+                'rgba(255, 152, 244, 0.2)',
+                'rgba(0, 255, 174, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 209, 0, 0.2)',
+    
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(49, 191, 0, 1)',
+                'rgba(80, 36, 198, 1)',
+                'rgba(255, 152, 244, 1)',
+                'rgba(0, 255, 174, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 209, 0, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+      // get chart canvas
+      var ctx = document.getElementById("myChart").getContext("2d");
+
+      // create the chart using the chart canvas
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
+      });
+    </script>
+
+  </body>
+</html>
